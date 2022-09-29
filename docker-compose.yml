@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  automad:
+    image: automad/automad
+    container_name: automad
+    restart: unless-stopped
+    volumes:
+      - automad-data:/app
+    networks:
+      - npm_default
+
+volumes:
+  automad-data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/opt/docker/automad/automad-data'
+
+networks:
+  npm_default:
+    external: true
